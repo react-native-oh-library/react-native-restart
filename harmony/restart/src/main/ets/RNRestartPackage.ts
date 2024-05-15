@@ -22,6 +22,26 @@
  * SOFTWARE.
  */
 
-import RNRestart from './NativeRestart';
+import type { TurboModule, TurboModuleContext } from '@rnoh/react-native-openharmony/ts';
+import { RNPackage, TurboModulesFactory } from '@rnoh/react-native-openharmony/ts';
+import { TM } from '@rnoh/react-native-openharmony/generated/ts';
+import { RNRestartTurboModule } from './RNRestartTurboModule';
 
-export default RNRestart;
+class RNRestartTurboModuleFactory extends TurboModulesFactory {
+  createTurboModule(name: string): TurboModule | null {
+    if (this.hasTurboModule(name)) {
+      return new RNRestartTurboModule(this.ctx);
+    }
+    return null;
+  }
+
+  hasTurboModule(name: string): boolean {
+    return name === TM.RestartNativeModule.NAME;
+  }
+}
+
+export class RNRestartPackage extends RNPackage {
+  createTurboModulesFactory(ctx: TurboModuleContext): TurboModulesFactory {
+    return new RNRestartTurboModuleFactory(ctx);
+  }
+}

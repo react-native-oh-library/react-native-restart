@@ -22,6 +22,6 @@
  * SOFTWARE.
  */
 
-import RNRestart from './NativeRestart';
+export * from './src/main/ets/RNRestartPackage';
 
-export default RNRestart;
+export * from "./src/main/ets/RNRestartTurboModule";
