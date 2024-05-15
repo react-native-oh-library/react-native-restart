@@ -1,6 +1,6 @@
 {
-  "name": "react-native-restart",
-  "version": "0.0.28",
+  "name": "@react-native-oh-tpl/react-native-restart",
+  "version": "0.0.27-0.0.1",
   "description": "Sometimes you want to reload your app bundle during app runtime. This package will allow you to do it.",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
@@ -11,6 +11,7 @@
     "lib",
     "android",
     "ios",
+    "harmony",
     "react-native-restart.podspec",
     "windows"
   ],
@@ -18,21 +19,32 @@
     "test": "jest --coverage && jest-coverage-badges --output './badges'",
     "typescript": "tsc --noEmit",
     "lint": "eslint --ext .js,.ts,.tsx .",
-    "prepare": "bob build && husky install",
     "release": "dotenv release-it",
     "example": "yarn --cwd Example",
     "pods": "cd Example/ios && node -e \"process.exit(require('os').platform() === 'darwin')\" || pod install",
     "bootstrap": "yarn example && yarn && yarn pods && cp .env.example .env",
     "clean": "rm -rf node_modules coverage .env lib Example/node_modules Example/ios/Pods",
-    "windows": "react-native run-windows",
-    "prepack": "bob build"
+    "windows": "react-native run-windows"
+  },
+  "harmony": {
+    "alias": "react-native-restart",
+    "codegenConfig": {
+      "specPaths": [
+        "./src"
+      ]
+    }
   },
   "keywords": [
     "react-native",
     "ios",
-    "android"
+    "android",
+    "harmony",
+    "codegen"
   ],
-  "repository": "https://github.com/avishayil/react-native-restart",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/react-native-oh-library/react-native-restart.git"
+  },
   "author": "Avishay Bar <avishay.il@gmail.com> (https://github.com/avishayil)",
   "license": "MIT",
   "bugs": {

@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "RestartAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "RestartAbility_label",
+      "value": "label"
+    }
+  ]
+}
