@@ -1,6 +1,6 @@
 {
   "module": {
-    "name": "restart",
+    "name": "rn_restart",
     "type": "har",
     "deviceTypes": [
       "default",
