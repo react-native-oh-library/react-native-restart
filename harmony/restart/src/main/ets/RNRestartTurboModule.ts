@@ -22,10 +22,11 @@
  * SOFTWARE.
  */
 
-import { TurboModule, TurboModuleContext } from '@rnoh/react-native-openharmony/ts';
+import { TurboModule, RNOHContext } from '@rnoh/react-native-openharmony/ts';
 import { TM } from '@rnoh/react-native-openharmony/generated/ts';
 import type Want from '@ohos.app.ability.Want';
 import common from '@ohos.app.ability.common';
+
 
 export class RNRestartTurboModule extends TurboModule implements TM.RestartNativeModule.Spec {
   // 待启动的Ability名称
@@ -37,9 +38,12 @@ export class RNRestartTurboModule extends TurboModule implements TM.RestartNativ
   // UIAbility上下文环境
   private uiAbilityContext: common.UIAbilityContext;
 
-  constructor(ctx: TurboModuleContext) {
+  private context: RNOHContext | undefined = undefined;
+
+  constructor(ctx: RNOHContext) {
     super(ctx);
     this.uiAbilityContext = ctx.uiAbilityContext;
+    this.context = ctx;
   }
 
   /*应用名称*/
@@ -57,13 +61,13 @@ export class RNRestartTurboModule extends TurboModule implements TM.RestartNativ
 
   /*重新启动*/
   public restart(reason: string): void {
+    RNRestartTurboModule.restartReason = reason;
     try {
-      RNRestartTurboModule.restartReason = reason;
-      let applicationContext = this.uiAbilityContext.getApplicationContext();
-      applicationContext.restartApp(this.want);
-    } catch (exception) {
-      const errMsg = { code: 16000064, message: 'Restart too frequently. Try again at least 10s later.' }
-      throw new Error(JSON.stringify(errMsg))
+      this.context.devToolsController.eventEmitter.emit("RELOAD", { reason });
+    } catch {
+      this.uiAbilityContext.terminateSelf().then(() => {
+          this.uiAbilityContext.startAbility(this.want)
+      })
     }
   }
 
@@ -75,9 +79,9 @@ export class RNRestartTurboModule extends TurboModule implements TM.RestartNativ
     return new Promise((resolve, reject) => {
       const reason = RNRestartTurboModule.restartReason;
       if (reason) {
-        resolve(reason)
+        resolve(reason);
       } else {
-        reject('reason is empty')
+        reject('reason is empty');
       }
     });
   }

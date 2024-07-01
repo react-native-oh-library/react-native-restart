@@ -26,10 +26,10 @@ import type { TurboModule } from 'react-native/Libraries/TurboModule/RCTExport';
 import { TurboModuleRegistry } from 'react-native';
 
 export interface Spec extends TurboModule {
-    restart: (reason: string) => void;
-    Restart: (reason: string) => void;
-    getReason: () => Promise<string>;
-    getName: () => string;
+    restart(reason?: string): void;
+    Restart(reason?: string): void;
+    getReason(): Promise<string>;
+    getName(): string;
 } 
  
 export default TurboModuleRegistry.get<Spec>('RestartNativeModule') as Spec | null;
