@@ -1,6 +1,6 @@
 {
   "name": "@react-native-oh-tpl/react-native-restart",
-  "version": "0.0.27-0.0.1",
+  "version": "0.0.27-0.0.2",
   "description": "To Restart Your React Native Project",
   "main": "Index.ets",
   "author": "",
