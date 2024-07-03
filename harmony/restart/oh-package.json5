@@ -1,12 +1,15 @@
 {
   "name": "@react-native-oh-tpl/react-native-restart",
-  "version": "0.0.27-0.0.1",
+  "version": "0.0.27-0.0.2",
   "description": "To Restart Your React Native Project",
   "main": "Index.ets",
   "author": "",
   "license": "Apache-2.0",
   "dependencies": {
     "@rnoh/react-native-openharmony": 'file:../react_native_openharmony'
+  },
+  "overrides": {
+    "@rnoh/react-native-openharmony": "./react_native_openharmony"
   }
 }
 
