@@ -22,7 +22,8 @@
  * SOFTWARE.
  */
 
-import { TurboModule, RNOHContext } from '@rnoh/react-native-openharmony/ts';
+import { TurboModule } from '@rnoh/react-native-openharmony/ts';
+import type { TurboModuleContext } from "@rnoh/react-native-openharmony/ts";
 import { TM } from '@rnoh/react-native-openharmony/generated/ts';
 import type Want from '@ohos.app.ability.Want';
 import common from '@ohos.app.ability.common';
@@ -38,9 +39,9 @@ export class RNRestartTurboModule extends TurboModule implements TM.RestartNativ
   // UIAbility上下文环境
   private uiAbilityContext: common.UIAbilityContext;
 
-  private context: RNOHContext | undefined = undefined;
+  private context: TurboModuleContext | undefined = undefined;
 
-  constructor(ctx: RNOHContext) {
+  constructor(ctx: TurboModuleContext) {
     super(ctx);
     this.uiAbilityContext = ctx.uiAbilityContext;
     this.context = ctx;
