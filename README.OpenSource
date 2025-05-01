@@ -1,0 +1,11 @@
+[
+    {
+        "Name": "react-native-restart",
+        "License": "MIT License",
+        "License File": "https://github.com/avishayil/react-native-restart/blob/master/LICENSE",
+        "Version Number": "0.0.27",
+        "Owner" : "xiafeng@huawei.com",
+        "Upstream URL": "https://github.com/avishayil/react-native-restart/",
+        "Description": "Sometimes you want to reload your app bundle during app runtime. This package will allow you to do it."
+    }
+]
